@@ -10,7 +10,9 @@ public class FullArray {
         /**
          * 参考：
          * http://blog.csdn.net/wuzhekai1985/article/details/6643127
-         * http://7x00ae.com1.z0.glb.clouddn.com/16-9-7/5007085.jpg
+         * http://7x00ae.com1.z0.glb.clouddn.com/16-9-7/5007085.
+         *  扩展 ：
+         *  http://blog.csdn.net/zhaojinjia/article/details/9320475
          * 递归的思想：
          * 设 输入为 3,4,5则他的全排列有
          *  3 4 5,
@@ -52,8 +54,14 @@ public class FullArray {
          *
          * 去重的全排列就是从第一个数字起每个数分别与它后面非重复出现的数字交换
          *
+         *
+         *  重排列的特殊要求：
+         *  比如 4必须在 5的前面
+         *
+         *  思想：
+         *
          */
-        int arr[]={3,4,5};
+        int arr[]={3,4,5,6};
 
         range(arr,0,arr.length-1);
 
@@ -100,9 +108,29 @@ public class FullArray {
 
     public  static boolean isSwap(int arr[],int a,int b){
 
+        /**
+         *  去重复
+         */
         for(int i=a;i<b;i++){
             if(arr[i]==arr[b])
                 return  false;
+
+        }
+        /**
+         *  特殊要求 4 必须在5 的前面
+         *  先交换，看 5是否在4 前面。
+         */
+        for(int i=a;i<b;i++){
+
+            if(arr[a]==4){
+                // 5在 [ab)里面
+                return false;
+            }
+            if(arr[b]==5&&arr[i]==4){
+                //待交换为5,交换了 5 会到4的前面
+                return  false;
+
+            }
 
         }
         return  true;
