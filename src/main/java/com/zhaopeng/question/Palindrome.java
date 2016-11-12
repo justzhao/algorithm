@@ -1,10 +1,15 @@
 package com.zhaopeng.question;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 判断一个字符串是不是回文串
  * Created by zhaopeng on 2016/10/1.
  */
 public class Palindrome {
+
+    Map<String,Integer> maps=new HashMap<String, Integer>();
 
     public  static  void  main(String args[]){
 
@@ -14,6 +19,8 @@ public class Palindrome {
 
 
     public  static  boolean isPalin(String s,int l,int h,int len){
+
+
 
         if(s==null||s.length()==1||len==1||len==0){
             return  true;
@@ -31,4 +38,25 @@ public class Palindrome {
         }
 
     }
+
+    public  void  handlerQuery(String type){
+
+        if(maps.get(type)!=null){
+            //当前正在处理同样的请求,直接返回
+            return;
+        }
+
+        maps.put(type,1);
+
+
+        //process。。。
+
+        // 处理之后删除map中的元素
+
+        maps.remove(type);
+
+        return;
+
+    }
+
 }
