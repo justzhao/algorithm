@@ -36,6 +36,43 @@ public class BinaryTreeInorderTraversalIteratively {
         return result;
     }
 
+    public List<Integer> inorderTraversalv2(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return result;
+        Stack<TreeNode> stack = new Stack<>();
+       // stack.push(root);
+
+        TreeNode node=root;
+        TreeNode last=root;
+        while (node!=null||!stack.isEmpty()){
+
+            if(node.right!=null){
+                stack.push(node.right);
+            }
+            if(node.left!=null&&last!=node.left){
+                stack.push(node.left);
+            }
+            if((node.left==null&&node.right==null)||last==node.left){
+                stack.pop();
+                last=node;
+                result.add(node.val);
+            }
+            if(!stack.isEmpty())
+            node=stack.peek();
+            else
+                break;
+
+
+
+
+
+
+        }
+
+
+        return  result;
+    }
+
     public static void main(String args[]) {
         BinaryTreeInorderTraversalIteratively v = new BinaryTreeInorderTraversalIteratively();
 
@@ -45,7 +82,7 @@ public class BinaryTreeInorderTraversalIteratively {
         root.right = right;
         root.left = new TreeNode(0);
         right.left = left;
-        System.out.println(v.inorderTraversal(root));
+        System.out.println(v.inorderTraversalv2(root));
 
     }
 }
