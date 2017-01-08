@@ -2,6 +2,8 @@ package com.zhaopeng.question;
 
 import com.zhaopeng.bean.TreeNode;
 
+import java.util.Date;
+
 /**
  * 求二叉树中两个节点的最低的公共祖先
  * Created by zhaopeng on 2017/1/4.
@@ -34,6 +36,10 @@ public class LowestCommonAncestorofaBinaryTree {
             return root;
         // 如果left 等null。 不关right 是否为null都返回
         return left!=null?left:right;
+    }
+
+    public  static void main(String args[]){
+        System.out.println(new Date().getTime());
     }
 
 }
