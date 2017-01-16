@@ -1,4 +1,4 @@
-package com.zhaopeng.question;
+package com.zhaopeng.question.BinaryTreeQ;
 
 /**
  * 输入一组节点的个数，求一共有多少种唯一二叉搜索树

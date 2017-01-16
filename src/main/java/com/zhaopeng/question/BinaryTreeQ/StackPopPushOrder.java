@@ -1,4 +1,4 @@
-package com.zhaopeng.question;
+package com.zhaopeng.question.BinaryTreeQ;
 
 import java.util.Stack;
 

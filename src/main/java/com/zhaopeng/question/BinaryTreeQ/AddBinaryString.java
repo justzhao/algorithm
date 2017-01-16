@@ -1,4 +1,4 @@
-package com.zhaopeng.question;
+package com.zhaopeng.question.BinaryTreeQ;
 
 /**
  * 两个二进制字符串数字相加

@@ -1,4 +1,4 @@
-package com.zhaopeng.question;
+package com.zhaopeng.question.BinaryTreeQ;
 
 /**
  * 给定一个字符串，验证是否为一个二叉树的前序遍历，空节点使用#
