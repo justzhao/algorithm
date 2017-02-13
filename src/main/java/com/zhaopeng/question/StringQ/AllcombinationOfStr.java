@@ -38,8 +38,12 @@ public class AllcombinationOfStr {
     }
 
     public static void main(String args[]){
-        String s="zab";
+/*        String s="zab";
         AllcombinationOfStr v=new AllcombinationOfStr();
-        System.out.println(v.findSubstringInWraproundString(s));
+        System.out.println(v.findSubstringInWraproundString(s));*/
+
+        Object o=null;
+        System.out.println((String)o);
+
     }
 }
