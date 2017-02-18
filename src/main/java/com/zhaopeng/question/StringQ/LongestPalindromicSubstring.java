@@ -1,168 +1,119 @@
 package com.zhaopeng.question.StringQ;
 
 /**
- * 最长回文子串
+ * 最长回文子串, 奇数和偶数中心扩展法
  * Created by zhaopeng on 2017/2/18.
  */
 public class LongestPalindromicSubstring {
 
     public String longestPalindrome(String s) {
 
-        if (s == null || s.length() == 0) return s;
+        if (s == null || s.length() == 0 || s.length() == 1) return s;
 
         int len = s.length();
-        /**
-         *  二维数组 中的 sum[i][j]
-         *  =1 是回文，
-         *  =0， 未知，
-         *  =-1 不是回文
-         */
 
-        int sum[][] = new int[len][len];
-        // 两组坐标点
+        int maxlen = 0;
+        int start = 0;
+        int end = 0;
 
         for (int i = 0; i < len; i++) {
-            int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
-            // 横纵坐标 加起来等于当前所在的索引
-            // 记录当前是否第一次遍历此斜行
-            boolean isStart = true;
-            if (i % 2 == 0) {
-                //偶数位置
-                x1 = x2 = i / 2;
-                y1 = y2 = i - x1;
-            } else {
-                // 奇数位置
-                x1 = y2 = i / 2;
-                y1 = i - x1;
-                x2 = i - y2;
-            }
-            while (x1 >= 0 && y1 < len && x2 < len && y2 >= 0) {
-                char a = s.charAt(x1);
-                char b = s.charAt(x2);
-                if (isStart) {
 
-                    if (a == b) {
-                        sum[x1][y1] = 1;
-                        sum[x2][y2] = 1;
-                    } else {
-
-                        sum[x1][y1] = -1;
-                        sum[x2][y2] = -1;
-
+            int j = i - 1;
+            int l = i + 1;
+            while (j >= 0 && l < len) {
+                if (s.charAt(j) == s.charAt(l)) {
+                    if (l - j > maxlen) {
+                        maxlen = l - j;
+                        start = j;
+                        end = l;
                     }
                 } else {
-                    // 查看上一次是否为 回文的
-                    int a1 = x1 + 1;
-                    int b1 = y1 - 1;
-                    int a2 = x2 - 1;
-                    int b2 = y2 + 1;
-                    if (sum[a1][b1] != 1 && sum[a2][b2] != 1) {
-                        sum[x1][y1] = -1;
-                        sum[x2][y2] = -1;
-                    } else {
-                        if (a == b) {
-                            sum[x1][y1] = 1;
-                            sum[x2][y2] = 1;
-                        } else {
-                            sum[x1][y1] = -1;
-                            sum[x2][y2] = -1;
-                        }
-                    }
-
+                    break;
                 }
-                isStart = false;
-                x1--;
-                y1++;
-                x2++;
-                y2--;
+
+                j--;
+                l++;
             }
         }
 
-
-        for (int i = len - 1; i >= 0; i--) {
-            int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
-            // 横纵坐标 加起来等于当前所在的索引
-            // 记录当前是否第一次遍历此斜行
-            boolean isStart = true;
-            if (i % 2 == 0) {
-                //偶数位置
-                x1 = x2 = (i + len - 1) / 2;
-                y1 = y2 = (i + len - 1) - x1;
-            } else {
-                // 奇数位置
-                x1 = y2 = (i + len - 1) / 2;
-                y1 = (i + len - 1) - x1;
-                x2 = (i + len - 1) - y2;
-            }
-            while (x1 > 0 && y1 < len && x2 < len && y2 > 0) {
-                char a = s.charAt(x1);
-                char b = s.charAt(x2);
-                if (isStart) {
-
-                    if (a == b) {
-                        sum[x1][y1] = 1;
-                        sum[x2][y2] = 1;
-                    } else {
-
-                        sum[x1][y1] = -1;
-                        sum[x2][y2] = -1;
-
-                    }
-                } else {
-                    // 查看上一次是否为 回文的
-                    int a1 = x1 + 1;
-                    int b1 = y1 - 1;
-                    int a2 = x2 - 1;
-                    int b2 = y2 + 1;
-                    if (sum[a1][b1] != 1 && sum[a2][b2] != 1) {
-                        sum[x1][y1] = -1;
-                        sum[x2][y2] = -1;
-                    } else {
-                        if (a == b) {
-                            sum[x1][y1] = 1;
-                            sum[x2][y2] = 1;
-                        } else {
-                            sum[x1][y1] = -1;
-                            sum[x2][y2] = -1;
-                        }
-                    }
-
-                }
-                isStart = false;
-                x1--;
-                y1++;
-                x2++;
-                y2--;
-            }
-        }
-
-        /**
-         * 遍历索引结果
-         */
-        int max = -1, maxi = -1, maxj = -1;
         for (int i = 0; i < len; i++) {
-            for (int j = i; j < len; j++) {
 
-                if (sum[i][j] == 1) {
-
-                    if (j - i > max) {
-                        maxi = i;
-                        maxj = j;
-                        max = j - i;
+            int j = i;
+            int l = i + 1;
+            while (j >= 0 && l < len) {
+                if (s.charAt(j) == s.charAt(l)) {
+                    if (l - j > maxlen) {
+                        maxlen = l - j;
+                        start = j;
+                        end = l;
                     }
+                } else {
+                    break;
+                }
+
+                j--;
+                l++;
+            }
+        }
+
+
+        return s.substring(start, end + 1);
+
+
+    }
+
+
+    public String longestPalindromeByDP(String s) {
+
+        if (s == null || s.length() == 0 || s.length() == 1) return s;
+
+        int len = s.length();
+        boolean[][] palind = new boolean[len][len];
+
+        int maxlen = 1;
+        int start = 0;
+        int end = 0;
+
+        boolean findTwo = false;
+        for (int i = 0; i < len; i++) {
+
+            palind[i][i] = true;
+            if (i < len - 1) {
+                if (s.charAt(i) == s.charAt(i + 1)) {
+                    palind[i][i + 1] = true;
+                    if (!findTwo) {
+                        start = i;
+                        end = i + 1;
+                        findTwo = true;
+                    }
+                    maxlen = 2;
                 }
             }
         }
 
-        System.out.println("res is "+maxi+" :　"+maxj);
-        return s.substring(maxi, maxj + 1);
 
+        for (int i = 3; i <= len; i++) { //长度
+
+            for (int j = 0; j <= len - i; j++) {
+                // j是子串开始的地方
+                int k = j + i - 1;//串结束
+
+                if (palind[j + 1][k - 1] && s.charAt(j) == s.charAt(k)) {
+                    palind[j][k] = true;
+                    start = j;
+                    end = k;
+                    maxlen = len;
+                }
+            }
+
+        }
+        return s.substring(start, end + 1);
     }
 
     public static void main(String args[]) {
 
         LongestPalindromicSubstring v = new LongestPalindromicSubstring();
-        String s = "2424sknksofdgsdg";
-        System.out.println(v.longestPalindrome(s));
+        String s = "ccc";
+        System.out.println(v.longestPalindromeByDP(s));
     }
 }
