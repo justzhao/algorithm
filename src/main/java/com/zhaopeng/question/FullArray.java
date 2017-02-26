@@ -9,6 +9,7 @@ public class FullArray {
     public   static  void  main(String args[]){
         /**
          * 参考：
+         * http://blog.csdn.net/xiazdong/article/details/7986015
          * http://blog.csdn.net/wuzhekai1985/article/details/6643127
          * http://7x00ae.com1.z0.glb.clouddn.com/16-9-7/5007085.
          *  扩展 ：
