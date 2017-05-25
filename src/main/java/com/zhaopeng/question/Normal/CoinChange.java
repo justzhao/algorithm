@@ -66,7 +66,6 @@ public class CoinChange {
             return 0;
         // 用来保存结果
         int[] minNumber = new int[amount + 1];
-
         //  当amount= i的时候最小组成的个数.
         for (int i = 1; i <= amount; i++) {
             minNumber[i] = Integer.MAX_VALUE;

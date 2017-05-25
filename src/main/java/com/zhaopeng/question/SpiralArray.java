@@ -176,22 +176,15 @@ public class SpiralArray {
 
                      break;
              }
-
-
            ostep=nstep;
             value--;
         }
 
-
-
-
         return array;
     }
 
-      enum direction {
+    enum direction {
         up,down,left,right
-
-
     }
 }
 
