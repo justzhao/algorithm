@@ -17,36 +17,44 @@ public class SpiralMatrix {
             return result;
         }
 
-
+        initResult(matrix, result);
         return result;
     }
 
 
-    public static direction getNextStep(int rows, int col, direction nowStep, int[][] array, int len) {
+    /**
+     * @param rows    当前遍历的列
+     * @param col     当前遍历的行
+     * @param nowStep
+     * @param w       当前 宽度 边界 最小
+     * @param h       当前 长度边界 最大
+     * @return
+     */
+    public direction getNextStep(int rows, int col, direction nowStep, int w, int h, int mw, int mh) {
         direction nextStep = nowStep;
         //先查看当前的方向
         switch (nextStep) {
             case up:
-                if (rows <= 0 || array[--rows][col] != 0) {
-                    // 向上走的时候，如果本行是第0行或者 上一行的值不为0.就需要右拐
+                if (rows <= mh) {
+                    // 向上走的时候，
                     nextStep = direction.right;
                 }
                 break;
             case down:
-                if (rows >= len - 1 || array[++rows][col] != 0) {
-                    //向下走的时候，如果本行是第len-1 行或者下一行的值不为0，就需要左拐
+                if (rows >= h - 1) {
+                    //向下走的时候，
                     nextStep = direction.left;
                 }
                 break;
             case left:
-                if (col <= 0 || array[rows][--col] != 0) {
-                    // 向左边走的时候，如果本列是第o列或者下一列的值不为0，就需要上拐
+                if (col <= mw) {
+                    // 向左边走的时候，
                     nextStep = direction.up;
                 }
                 break;
             case right:
-                if (col >= len - 1 || array[rows][++col] != 0) {
-                    //向右走的时候，如果本列是第len-1列或者下一列的值部位0，就需要下拐
+                if (col >= w - 1) {
+                    //向右走的时候，
                     nextStep = direction.down;
                 }
                 break;
@@ -58,44 +66,47 @@ public class SpiralMatrix {
 
 
     public void initResult(int[][] array, List<Integer> result) {
-
+        int h = array.length;
+        if (h == 0) {
+            return;
+        }
+        int w = array[0].length;
         int rows = 0;
         int col = 0;
         int value = array.length * array[0].length;
         direction ostep = direction.right;//初始化方向是右边
         direction nstep = ostep;
-        while (value > 0) {
-            //先从 00 开始
-            //System.out.println(value);
-            array[rows][col] = value;
-            // 根据下一步的方向来决定row和col的加减
-            //得到新的方向。
-            nstep = getNextStep(rows, col, ostep, array, len);
+        int mw = 0;
+        int mh = 0;
 
+        while (value > 0) {
+            result.add(array[rows][col]);
+            //得到新的方向。
+            nstep = getNextStep(rows, col, ostep, w, h, mw, mh);
             switch (ostep) {
                 case up:
                     if (ostep == nstep) {
                         rows--;
                     } else {
+                        mw++;
                         col++;
 
                     }
-
                     break;
                 case down:
                     if (ostep == nstep) {
                         rows++;
                     } else {
+                        w--;
                         col--;
                     }
 
                     break;
                 case left:
                     if (ostep == nstep) {
-
                         col--;
                     } else {
-
+                        h--;
                         rows--;
                     }
 
@@ -105,10 +116,8 @@ public class SpiralMatrix {
 
                         col++;
                     } else {
-
+                        mh++;
                         rows++;
-
-
                     }
 
                     break;
@@ -157,19 +166,19 @@ public class SpiralMatrix {
     public static void main(String args[]) {
         SpiralMatrix m = new SpiralMatrix();
 
-     /*   int len = 3;
+        int len = 3;
         int array[][] = new int[len][len];
         for (int i = 0; i < len; i++) {
             for (int j = 0; j < len; j++) {
                 array[i][j] = i * len + j + 1;
             }
 
-        }*/
+        }
 
-        int array[][] = new int[2][1];
+       /* int array[][] = new int[2][1];
 
         array[0][0] = 3;
-        array[1][0] = 5;
+        array[1][0] = 5;*/
 
         System.out.println(m.spiralOrder(array));
     }
