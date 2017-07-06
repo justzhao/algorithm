@@ -6,23 +6,24 @@ package com.zhaopeng.question.Normal;
 public class FindtheDuplicateNumber {
     //https://leetcode.com/problems/find-the-duplicate-number/#/solutions
 
-
-
+   // http://www.cnblogs.com/grandyang/p/4843654.html
     public int findDuplicate(int[] nums) {
 
-        if (nums == null || nums.length == 0) {
-            return 0;
+        int l = 1, h = nums.length - 1;
+        while (l < h) {
+            int mid = l + (h - l) / 2;
+            int cnt = 0;
+            for (int a : nums) {
+                if (a <= mid) ++cnt;
+            }
+            if (cnt <= mid) {
+                l = mid + 1;
+            }
+            else {
+                h = mid;
+            }
         }
-
-        int res = nums[0];
-
-        for (int i = 1; i < nums.length; i++) {
-
-            res = res & nums[i];
-
-        }
-
-        return res;
+        return l;
 
 
     }
