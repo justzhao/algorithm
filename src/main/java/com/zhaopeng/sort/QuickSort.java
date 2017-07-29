@@ -10,6 +10,7 @@ public class QuickSort {
         if (start > end) {
             return;
         }
+
         int low = start;
         int high = end;
         int b = a[start];
