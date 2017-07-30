@@ -47,8 +47,6 @@ public class HeapSort {
             if (value >= a[left])
                 break;        // 调整结束
             else {
-               /* a[c] = a[left];
-                a[left] = value;*/
                 swap(a, c, left);
             }
         }
