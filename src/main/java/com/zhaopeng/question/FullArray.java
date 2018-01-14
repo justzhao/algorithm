@@ -86,11 +86,9 @@ public class FullArray {
         }else {
             for (int i=l;i<=h;i++){  //第l个数分别与它后面的数字交换就能得到新的排列
                if(isSwap(arr,l,i)) {  // l 和i 之间有没有重复的i
-
                     swap(arr, i, l);
                     range(arr, l + 1, h);
                     swap(arr, i, l);
-
                 }
             }
         }

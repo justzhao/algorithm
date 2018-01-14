@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * https://leetcode.com/problems/unique-binary-search-trees-ii/
+ * https://leetcode.com/problems/unique-binary-search-trees-ii/description/
  * 输入一组节点的个数，返回所有二叉搜索树
+ *
+ * https://www.cnblogs.com/code-painter/p/4417354.html
+ * 卡特兰数
  * Created by zhaopeng on 2016/11/24.
  */
 public class UniqueBinarySearchTreesV2 {

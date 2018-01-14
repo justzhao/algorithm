@@ -20,16 +20,12 @@ public class TwoSum {
 
         int result[] = new int[2];
         for (int i = 0; i < nums.length; i++) {
-
             int a = nums[i];
-
             int diff = target - a;
             if (map.containsKey(diff)) {
                 int index = map.get(diff);
-
                 result[0] = index;
                 result[1] = i;
-
             }
             map.put(a, i);
         }

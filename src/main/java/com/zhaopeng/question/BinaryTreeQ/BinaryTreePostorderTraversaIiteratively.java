@@ -6,14 +6,50 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-/**
+/**  https://leetcode.com/problems/binary-tree-postorder-traversal/description/s
  * 非递归后续遍历二叉树
  * Created by zhaopeng on 2017/1/2.
  */
 public class BinaryTreePostorderTraversaIiteratively {
 
+    class NodeWrapper {
+        TreeNode node;
+
+        boolean visited = false;
+
+        public NodeWrapper(TreeNode node) {
+            this.node = node;
+        }
+    }
 
     public List<Integer> postorderTraversal(TreeNode root) {
+
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Stack<NodeWrapper> stack = new Stack<>();
+        TreeNode cur = root;
+        while (!stack.isEmpty() || cur != null) {
+            while (cur != null) {
+                NodeWrapper w = new NodeWrapper(cur);
+                stack.push(w);
+                cur = w.node.left;
+            }
+            NodeWrapper w = stack.pop();
+            if (!w.visited) {
+                w.visited = true;
+                stack.push(w);
+                cur = w.node.right;
+            } else {
+                res.add(w.node.val);
+            }
+        }
+        return res;
+    }
+
+
+    public List<Integer> postorderTraversal1(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
         if (root == null) return result;
@@ -42,14 +78,14 @@ public class BinaryTreePostorderTraversaIiteratively {
         return result;
     }
 
-    public static void main(String args[]){
-        TreeNode root=new TreeNode(1);
-        TreeNode right=new TreeNode(2);
-        TreeNode left=new TreeNode(3);
-        root.right=right;
-        right.left=left;
+    public static void main(String args[]) {
+        TreeNode root = new TreeNode(1);
+        TreeNode right = new TreeNode(2);
+        TreeNode left = new TreeNode(3);
+        root.right = right;
+        right.left = left;
 
-        BinaryTreePostorderTraversaIiteratively v=new BinaryTreePostorderTraversaIiteratively();
+        BinaryTreePostorderTraversaIiteratively v = new BinaryTreePostorderTraversaIiteratively();
         System.out.println(v.postorderTraversal(root));
     }
 }
