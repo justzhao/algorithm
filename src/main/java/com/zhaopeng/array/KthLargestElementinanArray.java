@@ -13,15 +13,9 @@ public class KthLargestElementinanArray {
         int k=1;
         System.out.println(o.findKthLargest(a,k));
     }
-
-
     public int findKthLargest(int[] nums, int k) {
-
         k--;
-
         return partition(nums, 0, nums.length - 1, k);
-
-
     }
 
     int partition(int nums[], int lo, int ho, int k) {
@@ -30,7 +24,6 @@ public class KthLargestElementinanArray {
         if(left==right){
             return nums[lo];
         }
-
         int priot = nums[lo];
         while (left < right) {
             while (priot >= nums[right] && left < right) {

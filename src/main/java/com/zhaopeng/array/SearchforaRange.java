@@ -9,13 +9,19 @@ public class SearchforaRange {
     public static void main(String args[]) {
         SearchforaRange o = new SearchforaRange();
 
-        int a[] = {2, 2};
+        int a[] = {1};
 
-        int target = 3;
+        int target = 1;
         System.out.println(o.searchRange(a, target));
 
     }
 
+    /**
+     * 无bug的二分
+     * @param nums
+     * @param target
+     * @return
+     */
     public int[] searchRange(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return new int[]{-1, -1};

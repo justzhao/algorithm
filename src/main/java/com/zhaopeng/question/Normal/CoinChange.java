@@ -8,18 +8,70 @@ import java.util.Arrays;
  */
 public class CoinChange {
 
+    public static void main(String args[]) {
+        CoinChange c = new CoinChange();
+        int coins[] = new int[1];
+        coins[0] = 2;
+        int amount = 1;
+        System.out.println(c.coinChange(coins, amount));
+    }
+
+
     public static int result = 0;
 
+
     public int coinChange(int[] coins, int amount) {
+        if (coins == null || coins.length == 0) {
+            return result;
+        }
+        if (amount == 0) {
+            return 0;
+        }
+        Arrays.sort(coins);
 
-       // ServiceLoader.
+        int index = coins.length - 1;
+        while (index >= 0) {
+            if (coins[index] > amount) {
 
+            } else if (coins[index] == amount) {
+                result++;
+            } else {
+                break;
+            }
+            index--;
+        }
+        helper(index, coins, amount);
+        return result == 0 ? -1 : result;
+    }
+
+    public void helper(int index, int coins[], int amount) {
+        if (index < 0) {
+            return;
+        }
+        if (amount == 0) {
+            result++;
+            return;
+        }
+        for (int i = index; i >= 0; i--) {
+            if (coins[i] > amount) {
+                continue;
+            } else {
+                helper(i, coins, amount - coins[i]);
+            }
+
+        }
+
+    }
+
+
+    public int coinChange1(int[] coins, int amount) {
+
+        // ServiceLoader.
 
         Arrays.sort(coins);
         doChanage(coins, amount, coins.length - 1);
 
         return result;
-
     }
 
     public void doChanage(int[] coins, int amount, int index) {
@@ -51,14 +103,6 @@ public class CoinChange {
         result++;
         doChanage(coins, amount - coins[j], j);
 
-    }
-
-    public static void main(String args[]) {
-        CoinChange c = new CoinChange();
-        int coins[] = new int[1];
-        coins[0] = 1;
-        int amount = 2;
-        System.out.println(c.coinChange(coins, amount));
     }
 
 
