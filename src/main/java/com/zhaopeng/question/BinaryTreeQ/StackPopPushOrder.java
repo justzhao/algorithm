@@ -36,15 +36,10 @@ public class StackPopPushOrder {
         Stack<Integer> stack=new Stack();
         int j=0;//当前入栈元素。
         for(int i=0;i<pop.length;i++){
-
              isOrder=false;
-
             int nowPop=pop[i];//当前出栈元素.
-
             if(stack.empty()||stack.peek()!=nowPop){
                 //如果当前栈为空。
-
-
                 if(j==push.length-1){
                     //已经遍历完了。
                     return  isOrder;
@@ -60,23 +55,17 @@ public class StackPopPushOrder {
                         //入栈
                         stack.push(push[k]);
                     }
-
                     //如果遍历完了 push数组还没有找到出栈元素，则可以肯定不是出栈序列
                     if(k==push.length-1&&!isOrder){
                         return  isOrder;
                     }
                 }
-
-
             }else {
                  //当前栈顶元素就是要弹出的，直接弹出
                     stack.pop();
                     isOrder=true;
             }
-
         }
-
-
         return  isOrder;
     }
 }

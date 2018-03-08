@@ -36,6 +36,7 @@ public class SortColors {
                 swap(nums, index, left);
                 index++;
                 left++;
+                //当遇到数字为1，不做变动。
             } else if (nums[index] == 1) {
                 index++;
             } else {

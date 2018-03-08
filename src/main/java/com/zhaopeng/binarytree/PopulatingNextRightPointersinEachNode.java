@@ -8,7 +8,7 @@ import com.zhaopeng.bean.TreeLinkNode;
  * <p>
  * For example,
  * Given the following perfect binary tree,
- * 1
+ *   1
  * /  \
  * 2    3
  * / \  / \

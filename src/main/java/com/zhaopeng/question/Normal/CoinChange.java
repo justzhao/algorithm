@@ -28,7 +28,6 @@ public class CoinChange {
             return 0;
         }
         Arrays.sort(coins);
-
         int index = coins.length - 1;
         while (index >= 0) {
             if (coins[index] > amount) {
@@ -43,7 +42,6 @@ public class CoinChange {
         helper(index, coins, amount);
         return result == 0 ? -1 : result;
     }
-
     public void helper(int index, int coins[], int amount) {
         if (index < 0) {
             return;

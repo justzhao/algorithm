@@ -6,19 +6,19 @@ package com.zhaopeng.array;
  */
 public class SearchinRotatedSortedArray {
 
-    public static void main(String args[]){
-        SearchinRotatedSortedArray o=new SearchinRotatedSortedArray();
+    public static void main(String args[]) {
+        SearchinRotatedSortedArray o = new SearchinRotatedSortedArray();
 
-        int a[]={4,5,6,7,8,1,2,3};
+        int a[] = {4, 5, 6, 7, 8, 1, 2, 3};
 
-        int target=8;
+        int target = 8;
 
-        System.out.println(o.search(a,target));
+        System.out.println(o.search(a, target));
     }
 
     public int search(int[] nums, int target) {
 
-        if(nums==null||nums.length==0){
+        if (nums == null || nums.length == 0) {
             return -1;
         }
 
@@ -26,31 +26,29 @@ public class SearchinRotatedSortedArray {
 
         //升序   (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
         int mid = 0;
-        while (l <=r) {
-
+        while (l <= r) {
             mid = (l + r) / 2;
             if (nums[mid] == target) {
                 return mid;
-
-            } else if(target==nums[r]){
-                return  r;
-            }  else if(target==nums[l]){
-
+            } else if (target == nums[r]) {
+                return r;
+            } else if (target == nums[l]) {
                 return l;
                 //中间的数字比左边大
-            } else if(nums[mid]>=nums[l]){
-                if(target<=nums[mid]&&target>=nums[l]){
-                    r=mid;
-                }else {
-                    l=mid+1;
+                // 5 6 7 8 9 0 1
+            } else if (nums[mid] >= nums[l]) {
+                if (target <= nums[mid] && target >= nums[l]) {
+                    r = mid;
+                } else {
+                    l = mid + 1;
                 }
                 // 中间的数字比左边小。
+                // 67 0 1 2 3  4  5
             } else {
-
-                if(target>nums[mid]&&target<=nums[r]){
-                    l=mid+1;
-                }else {
-                    r=mid;
+                if (target > nums[mid] && target <= nums[r]) {
+                    l = mid + 1;
+                } else {
+                    r = mid;
                 }
             }
         }

@@ -7,6 +7,11 @@ import com.zhaopeng.bean.TreeNode;
  */
 public class ValidateBinarySearchTree {
 
+    /**
+     * BST 左子树小于根节点，右子树大于根节点。
+     * @param root
+     * @return
+     */
     public boolean isValidBST(TreeNode root) {
 
         if (root == null) {
@@ -19,6 +24,7 @@ public class ValidateBinarySearchTree {
         if (node == null) {
             return true;
         }
+        // 当前节点的值， 需要小于最大值，大于最小值。， 最大值一般是表示，当前节点是父节点的左孩子，最小值是当前节点的右孩子。
         if (node.val <= min || node.val >= max) {
             return false;
         }

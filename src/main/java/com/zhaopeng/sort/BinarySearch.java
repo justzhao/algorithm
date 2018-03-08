@@ -6,8 +6,8 @@ package com.zhaopeng.sort;
 public class BinarySearch {
 
     public static void main(String args[]) {
-        int a[] = {1,2,3,4};
-        int t = 4;
+        int a[] = {1,2};
+        int t = 2;
         System.out.println(bs(a, t));
 
         System.out.println(bs1(a, t));

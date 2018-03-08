@@ -102,4 +102,31 @@ public class TargetSum {
                 dp[i] += dp[i - n];
         return dp[s];
     }
+
+
+
+
+
+
+
+
+
+    int res=0;
+    public int findTargetSumWays1(int[] nums, int S) {
+        int sum = 0;
+
+        helper(nums, S,0,0);
+        return res;
+    }
+
+    public void helper(int[] nums, int S,int sum, int start){
+        if(start==nums.length){
+            if(sum == S){
+                res++;
+            }
+            return;
+        }
+        helper(nums,S,sum-nums[start],start+1);
+        helper(nums,S,sum+nums[start],start+1);
+    }
 }

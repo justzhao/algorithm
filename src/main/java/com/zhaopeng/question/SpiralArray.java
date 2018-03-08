@@ -1,5 +1,7 @@
 package com.zhaopeng.question;
 
+import java.util.ArrayList;
+
 /**
  * 螺旋数组 打印
  * Created by zhaopeng on 2016/9/2.
@@ -186,5 +188,47 @@ public class SpiralArray {
     enum direction {
         up,down,left,right
     }
+
+    public ArrayList<Integer> printMatrix(int [][] matrix) {
+
+        ArrayList<Integer> res = new ArrayList<>();
+        if (matrix == null) {
+            return res;
+        }
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int top = 0, bottom = row - 1, left = 0, right = col - 1;
+
+        while (top <= bottom && left <= right) {
+
+            // 左到右
+            for (int i = left; i <= right; i++) {
+                res.add(matrix[top][i]);
+            }
+            //上到下
+            for (int i = top + 1; i <= bottom; i++) {
+                res.add(matrix[i][right]);
+            }
+            // 额外加条件是防止重复打印
+            //右到左
+            for (int i = right - 1; i >= left&&bottom>top; i--) {
+                res.add(matrix[bottom][i]);
+            }
+            //下到上
+            for (int i = bottom - 1; i > top&&right>left; i--) {
+                res.add(matrix[i][left]);
+            }
+
+            left++;
+            right--;
+            top++;
+            bottom--;
+        }
+
+        return res;
+
+    }
+
+
 }
 

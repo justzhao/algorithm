@@ -1,12 +1,41 @@
 package com.zhaopeng.question.Normal;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
+ * https://leetcode.com/problems/longest-consecutive-sequence/discuss/
  * Created by zhaopeng on 2017/5/30.
  */
 public class LongestConsecutiveSequence {
+
     public int longestConsecutive(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int res = 0;
+        HashSet<Integer> set = new HashSet<>();
+        for (int n : nums) {
+            set.add(n);
+        }
+        for (int n : nums) {
+            int down = n - 1;
+            while (set.contains(down)) {
+                set.remove(down);
+                down--;
+            }
+            int up = n + 1;
+            while (set.contains(up)) {
+                set.remove(up);
+                up++;
+            }
+            res = Math.max(res, up - down - 1);
+        }
+
+        return res;
+    }
+
+    public int longestConsecutive1(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }

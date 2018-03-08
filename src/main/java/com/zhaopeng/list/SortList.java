@@ -27,7 +27,6 @@ public class SortList {
 
         ListNode l = sortList(head);
         ListNode r = sortList(slow);
-
         return merge(l, r);
 
     }

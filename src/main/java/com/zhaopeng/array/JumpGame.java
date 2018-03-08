@@ -13,23 +13,32 @@ public class JumpGame {
 
     public static void main(String args[]) {
         JumpGame o = new JumpGame();
-
-        int a[] = {5,4,0,2,0,1,0,1,0};
-
+        int a[] = {5, 4, 0, 2, 0, 1, 0, 1, 0};
         System.out.println(o.canJump(a));
     }
 
-    public boolean canJump(int[] nums) {
+    public boolean canJump1(int[] nums) {
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if(i>max){
+                return false;
+            }
+            max=Math.max(max,nums[i]+i);
+        }
+        return true;
+    }
 
+    public boolean canJump(int[] nums) {
         if (nums == null || nums.length == 0) {
             return true;
         }
         int steps = 0;
         for (int i = nums.length - 1; i >= 0; i--) {
+            // 表示当前 点的可走步数位0.
             if (nums[i] == 0 && i != nums.length - 1) {
                 if (steps == 0) {
                     steps = 1;
-                }else {
+                } else {
                     steps++;
                 }
             } else {

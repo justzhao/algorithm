@@ -23,6 +23,7 @@ public class VerifySquenceOfBSTQ {
         int root = seq[end];
         int index = end;
 
+        //寻找下个子树的根节点，
         for (int i = start; i <= end - 1; i++) {
             if (seq[i] > root) {
                 index = i;

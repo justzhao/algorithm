@@ -1,6 +1,8 @@
 package com.zhaopeng.sort;
 
 /**
+ * 最坏 o（n^2）
+ * 最好 平均o（nlogn）
  * Created by zhaopeng on 2017/6/13.
  */
 public class QuickSort {

@@ -27,13 +27,34 @@ import java.util.List;
 
 public class Combinations {
 
+
+    public List<List<Integer>> combine1(int n, int k) {
+
+
+        List<List<Integer>> res = new ArrayList<>();
+        helper(res, new ArrayList<Integer>(), 1, n, k);
+        return res;
+    }
+    public void helper(List<List<Integer>> combs, List<Integer> comb, int start, int n, int k) {
+        if (k == 0) {
+            combs.add(new ArrayList<Integer>(comb));
+            return;
+        }
+        for (int i = start; i <= n; i++) {
+            //取数字i
+            comb.add(i);
+            helper(combs, comb, i + 1, n, k - 1);
+            //不取数字i
+            comb.remove(comb.size() - 1);
+        }
+
+    }
+
     /**
      * C(n,k)=C(n-1,k-1)+C(n-1,k).
      * <p>
      * 当 n=k 或者k=0的时候  C(n,k)=1
      */
-
-
     public List<List<Integer>> combine(int n, int k) {
 
         if (n <= k || k == 0) {

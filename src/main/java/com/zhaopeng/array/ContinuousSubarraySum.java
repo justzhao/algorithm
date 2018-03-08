@@ -42,6 +42,7 @@ public class ContinuousSubarraySum {
             if (k != 0) runningSum %= k;
 
             //前面已经存在 j 对k取余= runingsum。 说明ij之间一定有k的倍数。
+            //如果sum[i]和sum[j]的mod值相同，那就说明nums(i , j ] mod k肯定等于0(注意不是nums[i , j ]
             Integer prev = map.get(runningSum);
             if (prev != null) {
                 if (i - prev > 1) return true;

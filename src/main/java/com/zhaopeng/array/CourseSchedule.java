@@ -16,7 +16,7 @@ public class CourseSchedule {
 
     public boolean canFinishBFS(int numCourses, int[][] prerequisites) {
 
-        //入度
+        //入度,以定点i为 目标点的边
         int[] degree = new int[numCourses];
         for (int i = 0; i < prerequisites.length; i++) {
             degree[prerequisites[i][0]]++;
@@ -24,6 +24,7 @@ public class CourseSchedule {
         int res = numCourses;
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < degree.length; i++) {
+            // =0表示没有定点以它为终点
             if (degree[i] == 0) {
                 queue.offer(i);
                 res--;
@@ -117,6 +118,10 @@ public class CourseSchedule {
     }
 
 
+   /*8 拓扑排序
+   ** 学1必须学0，0是前置。
+ * 2, [[1,0]]
+    */
     public boolean canFinish2(int numCourses, int[][] prerequisites) {
         ArrayList[] graph = new ArrayList[numCourses];
         int[] degree = new int[numCourses];
@@ -130,6 +135,7 @@ public class CourseSchedule {
         for (int i = 0; i < prerequisites.length; i++) {
             //出度，i节点 以 prerequisites[i][1] 为前置。
             degree[prerequisites[i][1]]++;
+            //
             graph[prerequisites[i][0]].add(prerequisites[i][1]);
         }
         for (int i = 0; i < degree.length; i++) {

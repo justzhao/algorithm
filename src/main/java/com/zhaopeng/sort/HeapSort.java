@@ -41,12 +41,14 @@ public class HeapSort {
         int left = 2 * start + 1;
         int c = start;
         for (; left <= end; c = left, left = 2 * left + 1) {
+            //右孩子
             int right = left + 1;
+
             if (left < end && a[left] < a[right])
-                left = right;
+                left = right; //找出孩子节点较大的数
             if (value >= a[left])
                 break;        // 调整结束
-            else {
+            else {//value <a[left]
                 swap(a, c, left);
             }
         }

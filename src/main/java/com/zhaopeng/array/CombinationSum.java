@@ -24,9 +24,6 @@ public class CombinationSum {
         List<List<List<Integer>>> dp = new ArrayList<>();
         // 从i 到target 依次遍历
         for (int i = 1; i <= target; i++) {
-            if (i == 7) {
-                System.out.println();
-            }
             //用来存放 和为 i的list
             List<List<Integer>> newList = new ArrayList(); // combs for curr i
             // 遍历这个数组
@@ -39,7 +36,7 @@ public class CombinationSum {
                     List<List<Integer>> temp = dp.get(i - candidates[j] - 1);
                     for (List<Integer> l : temp) {
                         int c = candidates[j];
-                        // 如果不小于第一个数，会出现重复的，为什么
+                        // 如果不小于第一个数，会出现重复的，为什么,排序了。
                         int ll = l.get(0);
                         if (c <= ll) {
                             List cl = new ArrayList<>();
