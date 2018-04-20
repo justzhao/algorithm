@@ -20,9 +20,7 @@ public class BubbleSort {
                     flag = true;
                     swap(a, j, j + 1);
                 }
-
             }
-
             if (!flag) {
                 break;
             }

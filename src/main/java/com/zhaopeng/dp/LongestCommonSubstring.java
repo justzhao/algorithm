@@ -40,7 +40,6 @@ public class LongestCommonSubstring {
         if (A == null || B == null) {
             return 0;
         }
-
         //dp [i][j]是表示 长度i和j 的共同子串，必须包含i和j
         int dp[][] = new int[A.length() + 1][B.length() + 1];
 

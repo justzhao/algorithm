@@ -13,24 +13,52 @@ public class HeapSort {
         a[j] = temp;
     }
 
+    //   初始化建堆过程时间：O(n)
     public void buildHeap(int a[]) {
 
 
         int len = a.length;
         //  建立堆
         for (int i = len / 2 - 1; i >= 0; i--) {
-            heapAdjust(a, i, len - 1);
+            adjust(a, i, len - 1);
         }
         // 调整堆
         for (int i = len - 1; i >= 0; i--) {
             swap(a, 0, i);
             // 调整a[0...i-1]，使得a[0...i-1]仍然是一个最大堆。
             // 即，保证a[i-1]是a[0...i-1]中的最大值。
-            heapAdjust(a, 0, i - 1);
+            adjust(a, 0, i - 1);
+        }
+
+    }
+    //O(nlogn)
+    public void adjust(int nums[], int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        int c = start;//父节点
+        int left = start * 2 + 1;
+
+        int value=nums[c];//保留需要交换的值
+        for (; left < end; c = left, left = left * 2 + 1) {
+
+            int right = left + 1;//右孩子
+
+            if (nums[left] < nums[right]) {
+                left = right;
+            }
+            if (value<nums[left]){
+                swap(nums,c,left);
+            }else {
+                break;
+            }
+
         }
 
     }
 
+
+    //O(nlogn)
     public void heapAdjust(int a[], int start, int end) {
 
         if (start > end) {
@@ -54,16 +82,16 @@ public class HeapSort {
         }
     }
 
-    public static void main(String args[]){
-        int a[]=new int[10];
+    public static void main(String args[]) {
+        int a[] = new int[10];
 
-        int b[]={20,30,90,40,70,110,60,10,100,50,80};
+        int b[] = {20, 30, 90, 40, 70, 110, 60, 10, 100, 50, 80};
 
-        HeapSort s=new HeapSort();
+        HeapSort s = new HeapSort();
         s.buildHeap(b);
 
-        for(int i=0;i<b.length;i++){
-            System.out.print(b[i]+" ");
+        for (int i = 0; i < b.length; i++) {
+            System.out.print(b[i] + " ");
         }
 
     }

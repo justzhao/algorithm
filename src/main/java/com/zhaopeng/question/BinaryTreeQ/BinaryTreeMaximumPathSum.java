@@ -3,7 +3,7 @@ package com.zhaopeng.question.BinaryTreeQ;
 import com.zhaopeng.bean.TreeNode;
 
 /**
- * 给定一个二叉树，求二叉树两个点直接的最大距离，可以不包括根节点
+ * 给定一个二叉树，求二叉树两个点之间的最大距离，可以不包括根节点
  * Created by zhaopeng on 2016/12/10.
  */
 public class BinaryTreeMaximumPathSum {

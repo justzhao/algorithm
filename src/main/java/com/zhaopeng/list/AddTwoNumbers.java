@@ -41,7 +41,7 @@ public class AddTwoNumbers {
         }
         while (preSum >= 10) {
 
-            prev.next = new ListNode(preSum % 2);
+            prev.next = new ListNode(preSum % 10);
             prev = prev.next;
             preSum = preSum / 10;
         }
