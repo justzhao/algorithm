@@ -3,21 +3,68 @@ package com.zhaopeng.question.Normal;
 import java.util.Arrays;
 
 /**
- * 找零钱，给定一些零钱和一个数值，使用最少的零钱组成这个数字
+ * 找零钱，给定一些零钱和一个数值，使用最少的零钱组成这个数字.
+ * 完全背包问题哦
  * Created by zhaopeng on 2017/5/24.
  */
 public class CoinChange {
 
     public static void main(String args[]) {
         CoinChange c = new CoinChange();
-        int coins[] = new int[1];
-        coins[0] = 2;
+        int coins[] = new int[2];
+        //1,2147483647
+        coins[0] = 1;
+        coins[1]=2147483647;
         int amount = 1;
-        System.out.println(c.coinChange(coins, amount));
+        System.out.println(c.coinChange22(coins, amount));
     }
 
 
-    public static int result = 0;
+    /**
+     * 这个应该是最nice的。
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public int coinChange22(int[] coins, int amount) {
+
+
+        if (coins == null || coins.length < 0 || amount < 0) {
+            return 0;
+        }
+
+        // f[i][j]表示最 总量为j的时候使用 前i个硬币最小的组成方法。
+        //f[i][j]=min(f[i-1][j],f[i][j-coins[i-1]]+1);
+        int f[][] = new int[coins.length + 1][amount + 1];
+
+        f[0][0] = 1;
+
+        for (int i = 1; i <= amount; i++) {
+            f[0][i] = Integer.MAX_VALUE;
+        }
+
+        for (int i = 1; i <= coins.length; i++) {
+            for (int j = 1; j <= amount; j++) {
+                f[i][j] = f[i-1][j];
+
+                if (j >= coins[i - 1]) {
+                    if (f[i][j - coins[i - 1]] != Integer.MAX_VALUE) {
+                        f[i][j] = Math.min(f[i ][j], f[i][j - coins[i - 1]] + 1);
+                    }
+
+                }
+            }
+        }
+        return f[coins.length][amount]==Integer.MAX_VALUE?-1:f[coins.length][amount];
+
+    }
+
+
+
+
+
+
+        public static int result = 0;
 
 
     public int coinChange(int[] coins, int amount) {
@@ -125,4 +172,6 @@ public class CoinChange {
         else
             return minNumber[amount];
     }
+
+
 }

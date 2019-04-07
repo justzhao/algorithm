@@ -1,11 +1,72 @@
 package com.zhaopeng.sort;
 
+import java.util.Stack;
+
 /**
  * 最坏 o（n^2）
  * 最好 平均o（nlogn）
  * Created by zhaopeng on 2017/6/13.
  */
 public class QuickSort {
+
+
+    public void qsort(int a[], int start, int end) {
+
+        Stack<Integer> stack = new Stack<>();
+        stack.push(start);
+        stack.push(end);
+        while (!stack.isEmpty()) {
+
+            int high = stack.pop();
+            int low = stack.pop();
+
+            if (low < high) {
+
+                int k = partition(a, low, high);
+                if (k > low) {
+
+                    stack.push(low);
+                    stack.push(k - 1);
+                }
+                if (k < high) {
+                    stack.push(k + 1);
+                    stack.push(high);
+                }
+
+            }
+        }
+
+    }
+
+    public int partition(int nums[], int start, int end) {
+        if (start >= end) {
+            return start;
+        }
+
+        int pivot = nums[start];
+
+        int low = start;
+        int high = end;
+        while (low < high) {
+            while (low < high && nums[high] >= pivot) {
+                high--;
+            }
+            if (low < high) {
+                nums[low]=nums[high];
+
+                low++;
+            }
+            while (low < high && nums[low] <= pivot) {
+                low++;
+            }
+            if (low < high) {
+                nums[high] = nums[low];
+                high--;
+            }
+        }
+        nums[low] = pivot;
+        return low;
+    }
 
 
     public void quickSort(int a[], int start, int end) {
