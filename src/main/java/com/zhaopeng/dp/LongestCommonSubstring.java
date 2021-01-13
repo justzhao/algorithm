@@ -32,6 +32,8 @@ public class LongestCommonSubstring {
        // String x = "abcdxyz", y = "xyzabcd";
         String x = "zxabcdezy", y = "yzabcdezx";
 
+
+
         System.out.println(o.longestCommonSubstring(x,y));
     }
 
@@ -60,6 +62,8 @@ public class LongestCommonSubstring {
             }
         }
 
+        StringBuilder sb=new StringBuilder();
+        sb.deleteCharAt(sb.length()-1);
         return result;
         //return dp[A.length()][B.length()];
     }
